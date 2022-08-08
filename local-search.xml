@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>python学习笔记</title>
+    <link href="/2022/06/13/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <url>/2022/06/13/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<p>1.#!&#x2F;usr&#x2F;bin&#x2F;python3位于首行，用来指定解释器，有时候也会用#!&#x2F;usr&#x2F;bin&#x2F;env python3 让env去查找python3的绝对路径替换作为解释器路径</p><p>2.注释 单行注释单个#号，多行注释可以用多个 <strong>#</strong> 号，还有 <strong>‘’’</strong> 和 <strong>“””</strong></p><p>3.python中数字有四种类型：整数int、布尔型boolean(布尔是整型的子类型)、浮点数<strong>float</strong> 和复数complex</p><p>4.使用三引号(<strong>‘’’</strong> 或 <strong>“””</strong>)可以指定一个多行字符串，字符串不可变，字符串的截取的语法格式：**变量[头下标:尾下标:步长]**，字符串可以用 <strong>+</strong> 运算符连接在一起，用 ***** 运算符重复，Python中的字符串有两种索引方式，从左往右以0开始，从右往左以-1开始</p><p>5.<strong>print</strong> 默认输出是换行的，如果要实现不换行需要在变量末尾加上 end&#x3D;””</p><p>6.Python 中的变量不需要声明。每个变量在使用前都必须赋值，变量赋值以后该变量才会被创建。在 Python 中，变量就是变量，它没有类型，我们所说的”类型”是变量所指的内存中对象的类型。</p><p>7.数值的除法包含两个运算符：**&#x2F;** 返回一个浮点数，**&#x2F;&#x2F;** 返回一个整数，在混合计算时，Python会把整型转换成为浮点数。**代表幂运算， 返回x的y次幂</p><p>8.列表List，列表中元素的类型可以不相同，它支持数字，字符串甚至可以包含列表（所谓嵌套）。列表是写在方括号 <strong>[]</strong> 之间、用逗号分隔开的元素列表。列表可以被索引和截取，列表被截取后返回一个包含所需元素的新列表，支持分片和+操作进行拼接，list中的元素是可变的</p><p>9.tuple元组，写在小括号()里，用逗号分割，可索引可分片可拼接，里面的元素类型可以不相同，元素不可改变，但是可以包含可变的对象，比如list列表，空元组定义和1个元素的元组定义举例：tup1&#x3D;()  tup2&#x3D;(20,) 一个元素时，必须额外添加逗号</p><p>10.set集合，使用大括号{}或者set()函数创建集合，创建一个空集合必须用 <strong>set()</strong> 而不是 **{ }**，因为 <strong>{ }</strong> 是用来创建一个空字典。集合运算 差集a-b  并集 a|b 交集 a&amp;b 集合a和集合b中不同时存在的元素 a^b，集合是可变的</p><p>11.dictionary字典，列表是有序的对象集合，字典是无序的对象集合，它使用大括号{}标识，是一个无序的 <strong>键(key) : 值(value)</strong> 的集合，键(key)必须使用不可变类型，且在字典中唯一。创建空字典使用{}，在字典中遍历时，可以使用 items() enumerate() zip()等方法</p><p>12.数据类型转换，int(x [,base])  float(x)  complex(real [,imag])  str(x)  eval(str)    repr(x)  tuple(s)  list(s)  set(s)  dict(d)  frozenset(s)  chr(x)  ord(x)  hex(x)  oct(x)</p><p>13.推导式举例：{ key_expr: value_expr for value in collection }<br>或{ key_expr: value_expr for value in collection if condition }，{ expression for item in Sequence }或{ expression for item in Sequence if conditional }</p><p>14.海象运算符:&#x3D;，为3.8新增，实质是一个表达式，比如a:&#x3D;1&gt;0，是指将1&gt;0的计算结果赋值给a。</p><p>15.python的逻辑运算符 and  or not，成员运算符 in  not in，身份运算符 is is not，判断两个对象是否相同等</p><p>16.python中的del删除的是变量即引用，而不是数据。举例del var1</p><p>17.python提供了丰富的字符串打印和常用内建函数，在使用时优先查文档，避免重复造轮子，集合，元组，列表，字典亦是如此。</p><p>18.条件控制，循环语句和java类似。Python 中用 <strong>elif</strong> 代替了 <strong>else if</strong>，所以if语句的关键字为：<strong>if – elif – else</strong>，还有while-else的用法，for-else。Python pass是空语句，是为了保持程序结构的完整性。pass 不做任何事情，一般用做占位语句。</p><p>19.python的迭代器，iter()和next()方法，迭代器也可以使用循环语句进行遍历。把一个类作为一个迭代器使用需要在类中实现两个方法 <strong>iter</strong>() 与 <strong>next</strong>() ，StopIteration 异常用于标识迭代的完成，防止出现无限循环的情况，在 <strong>next</strong>() 方法中我们可以设置在完成指定循环次数后触发 StopIteration 异常来结束迭代</p><p>20.python的生成器，在 Python 中，使用了 yield 的函数被称为生成器（generator）。跟普通函数不同的是，生成器是一个返回迭代器的函数，只能用于迭代操作，更简单点理解生成器就是一个迭代器。在调用生成器运行的过程中，每次遇到 yield 时函数会暂停并保存当前所有的运行信息，返回 yield 的值, 并在下一次执行 next() 方法时从当前位置继续运行。调用一个生成器函数，返回的是一个迭代器对象。</p><p>21.函数定义，def 函数名（参数列表）: 函数体  无返回值时代表返回None，关于入参传递，在 python 中，类型属于对象，对象有不同类型的区分，变量是没有类型的，因此变量可以指向任意类型。对于可变类型，在函数内部修改后会影响原值，对于不可变对象，在函数内部修改后则是生产了新的对象。通过id()函数可以查看内存地址的变化</p><p>22.函数参数存在必须参数，关键字参数，默认参数，不定长参数多种用法，Python使用lambda来创建匿名函数，实际只是定义一个表达式，lambda [arg1 [,arg2,…..argn]]:expression。在python3.8新增强制位置参数特性。</p><p>23.collections模块提供了deque队列的能力</p><p>24.一个模块被另一个程序第一次引入时，其主程序将运行。如果我们想在模块被引入时，模块中的某一程序块不执行，我们可以用__name__属性来使该程序块仅在该模块自身运行时执行，模块即是可重用的一组功能的代码。目录只有包含一个叫做 <strong>init</strong>.py 的文件才会被认作是一个包, <strong>from package import item</strong>。目录下有模块</p><p>25.python读取文件和读取键盘输入。open(filename, mode)  input()。文件对象有常用的函数供开发者对文件进行操作。</p><p>26.ython的pickle模块实现了基本的数据序列和反序列化。通过pickle模块的序列化操作我们能够将程序中运行的对象信息保存到文件中去，永久存储。通过pickle模块的反序列化操作，我们能够从文件中创建上一次程序保存的对象</p><p>27.<strong>os</strong> 模块提供了非常丰富的方法用来处理文件和目录</p><p>28.异常try&#x2F;except，一个 try 语句可能包含多个except子句，分别来处理不同的特定的异常。最多只有一个分支会被执行。try&#x2F;except…else  try-finally。使用raise抛出异常 <strong>raise</strong> Exception()。python中的预定义的清理行为依赖于with关键字，类似于java中的try resource的用法</p><p>29.python面向对象，多继承，self代表类的实例，而非类，**__private_attrs<strong>：两个下划线开头，声明该属性为私有，不能在类的外部被使用或直接访问。在类内部的方法中使用时 <strong>self.__private_attrs</strong>，</strong>__private_method<strong>：两个下划线开头，声明该方法为私有方法，只能在类的内部调用 ，不能在类的外部调用。</strong>self.__private_methods**</p><p>30.命名空间或作用域，假设我们要使用变量 runoob，则 Python 的查找顺序为：局部的命名空间 -&gt; 全局命名空间 -&gt; 内置命名空间。当内部作用域想修改外部作用域的变量时，就要用到 global 和 nonlocal 关键字了。<strong>Enclosing</strong>，包含了非局部(non-local)也非全局(non-global)的变量。比如两个嵌套函数，一个函数（或类） A 里面又包含了一个函数 B ，那么对于 B 中的名称来说 A 中的作用域就为 nonlocal。</p><p>31.python标准库，os，glob，sys，re，math，random，urllib，smtplib，datatime，zlib，gzip，bz2，zipfile，tarfile，timeit，doctest，unittest等等</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+      <category>python</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>python</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>必看书籍列表</title>
+    <link href="/2022/06/09/java%E5%BF%85%E7%9C%8B%E4%B9%A6%E7%B1%8D/"/>
+    <url>/2022/06/09/java%E5%BF%85%E7%9C%8B%E4%B9%A6%E7%B1%8D/</url>
+    
+    <content type="html"><![CDATA[<ul><li><p>[java性能调优实战]:<a href="https://pan.baidu.com/s/1goVMgl-7WDt_o4XbHEYGow?pwd=9rdf">https://pan.baidu.com/s/1goVMgl-7WDt_o4XbHEYGow?pwd=9rdf</a></p></li><li><p>[深入理解java虚拟机]:<a href="https://pan.baidu.com/s/1WjQWhWsKFuVLYktVvpnkKQ?pwd=thpz">https://pan.baidu.com/s/1WjQWhWsKFuVLYktVvpnkKQ?pwd=thpz</a></p></li><li><p>[算法图解]:<a href="https://pan.baidu.com/s/12W24jUVyjad8PeoPzaaa2Q?pwd=ttfg">https://pan.baidu.com/s/12W24jUVyjad8PeoPzaaa2Q?pwd=ttfg</a></p></li><li><p>[代码简洁之道]:<a href="https://pan.baidu.com/s/1LEnOdonC22-oGq9uF9j7lQ?pwd=a6np">https://pan.baidu.com/s/1LEnOdonC22-oGq9uF9j7lQ?pwd=a6np</a></p></li><li><p>[流畅的Python]:<a href="https://pan.baidu.com/s/1pYDRov3xpZeIOqRSQ9W6Pg?pwd=us60">https://pan.baidu.com/s/1pYDRov3xpZeIOqRSQ9W6Pg?pwd=us60</a></p></li><li><p>[一本小小的MyBatis源码分析书]:<a href="https://pan.baidu.com/s/1gFrvPBwbswaDt6lPsZpU9w?pwd=bamm">https://pan.baidu.com/s/1gFrvPBwbswaDt6lPsZpU9w?pwd=bamm</a></p></li><li><p>[Java性能权威指南]:<a href="https://pan.baidu.com/s/1YNYGx7islQ2U6-bag3fuwg?pwd=q1j5">https://pan.baidu.com/s/1YNYGx7islQ2U6-bag3fuwg?pwd=q1j5</a></p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>书籍阅读</category>
+      
+      <category>编程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+      <tag>python</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>个人博客搭建及写作指导</title>
+    <link href="/2022/06/07/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E5%86%99%E4%BD%9C%E6%8C%87%E5%AF%BC/"/>
+    <url>/2022/06/07/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E5%86%99%E4%BD%9C%E6%8C%87%E5%AF%BC/</url>
+    
+    <content type="html"><![CDATA[<h4 id="一，本地环境安装"><a href="#一，本地环境安装" class="headerlink" title="一，本地环境安装"></a>一，本地环境安装</h4><p> 安装git node.js</p><h4 id="二，hexo常用命令"><a href="#二，hexo常用命令" class="headerlink" title="二，hexo常用命令"></a>二，hexo常用命令</h4><p>hexo new title  创建新文章</p><p>hexo clean 清空缓存</p><p>hexo g 生成静态文件</p><p>hexo d 部署</p><p>已设置别名快捷命令到git，hs即启动本地server（clean&amp;g&amp;s） hd即部署（clean&amp;g&amp;d）</p><h4 id="三，常用配置"><a href="#三，常用配置" class="headerlink" title="三，常用配置"></a>三，常用配置</h4><p>[hexo指导文档]: <a href="https://hexo.io/docs/">https://hexo.io/docs/</a><br>[Hexo Fluid 用户手册]:  <a href="https://hexo.fluid-dev.com/docs/guide/">https://hexo.fluid-dev.com/docs/guide/</a></p><p>新建博客的模板文件 scaffolds&#x2F;post.md</p><p>部署的git路径及分支在_config.yml文件的deploy节点下配置</p><h4 id="四，问题解决"><a href="#四，问题解决" class="headerlink" title="四，问题解决"></a>四，问题解决</h4><p><a href="https://blog.csdn.net/qq_38148394/article/details/79997971">https://blog.csdn.net/qq_38148394/article/details/79997971</a> 上传图片问题<br><a href="https://wxnacy.com/2018/01/12/hexo-specific-symbol/">https://wxnacy.com/2018/01/12/hexo-specific-symbol/</a> 特殊符号转义问题</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>个人博客指导</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>博客指导</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>

@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>java性能权威指南读书笔记</title>
+    <link href="/2022/08/16/java%E6%80%A7%E8%83%BD%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    <url>/2022/08/16/java%E6%80%A7%E8%83%BD%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<p>1.JVM调优两类标志</p><p>​布尔标志 -XX:+FlagName 表示开启，-XX:-FlagName表示关闭</p><p>​附带参数的标志 -XX:FlagName&#x3D;something 表示将标志flagName的值设置为something</p><p>​使用-XX:+Printflagsfinal 标志可以获得具体运行环境中特定标志的默认值</p><p>2.我们不应该把大量得到时间都耗费在那些小的性能改进上，而应该等到性能分析结果显示这些优化措施有巨大收益的时候才进行，一定避免过早的进行优化</p><p>3.奥卡姆剃刀原理，切勿浪费较多东西去做，用较少的东西，同样可以做好的事情。其实简单的几个字就可以概括，“如无必要，勿增实体”。所以这个原理也可以成为简单有限原理 </p><p>4.性能测试四项原则</p><p>​4.1 测试真实应用，应该在产品实际使用的环境中进行性能测试。</p><p>​三种测试方法：微基准测试，宏基准测试，介基准测试</p><p>​4.2 理解批处理流逝时间、吞吐量和响应时间</p><p>LDAP协议</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>书籍阅读</category>
+      
+      <category>编程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>python学习笔记</title>
     <link href="/2022/06/13/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <url>/2022/06/13/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
@@ -64,7 +91,7 @@
     <link href="/2022/06/07/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E5%86%99%E4%BD%9C%E6%8C%87%E5%AF%BC/"/>
     <url>/2022/06/07/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E5%86%99%E4%BD%9C%E6%8C%87%E5%AF%BC/</url>
     
-    <content type="html"><![CDATA[<h4 id="一，本地环境安装"><a href="#一，本地环境安装" class="headerlink" title="一，本地环境安装"></a>一，本地环境安装</h4><p> 安装git node.js</p><h4 id="二，hexo常用命令"><a href="#二，hexo常用命令" class="headerlink" title="二，hexo常用命令"></a>二，hexo常用命令</h4><p>hexo new title  创建新文章</p><p>hexo clean 清空缓存</p><p>hexo g 生成静态文件</p><p>hexo d 部署</p><p>已设置别名快捷命令到git，hs即启动本地server（clean&amp;g&amp;s） hd即部署（clean&amp;g&amp;d）</p><h4 id="三，常用配置"><a href="#三，常用配置" class="headerlink" title="三，常用配置"></a>三，常用配置</h4><p>[hexo指导文档]: <a href="https://hexo.io/docs/">https://hexo.io/docs/</a><br>[Hexo Fluid 用户手册]:  <a href="https://hexo.fluid-dev.com/docs/guide/">https://hexo.fluid-dev.com/docs/guide/</a></p><p>新建博客的模板文件 scaffolds&#x2F;post.md</p><p>部署的git路径及分支在_config.yml文件的deploy节点下配置</p><h4 id="四，问题解决"><a href="#四，问题解决" class="headerlink" title="四，问题解决"></a>四，问题解决</h4><p><a href="https://blog.csdn.net/qq_38148394/article/details/79997971">https://blog.csdn.net/qq_38148394/article/details/79997971</a> 上传图片问题<br><a href="https://wxnacy.com/2018/01/12/hexo-specific-symbol/">https://wxnacy.com/2018/01/12/hexo-specific-symbol/</a> 特殊符号转义问题</p>]]></content>
+    <content type="html"><![CDATA[<h4 id="一，本地环境安装"><a href="#一，本地环境安装" class="headerlink" title="一，本地环境安装"></a>一，本地环境安装</h4><p> 安装git node.js</p><h4 id="二，hexo常用命令"><a href="#二，hexo常用命令" class="headerlink" title="二，hexo常用命令"></a>二，hexo常用命令</h4><p>hexo new title  创建新文章</p><p>hexo clean 清空缓存</p><p>hexo g 生成静态文件</p><p>hexo d 部署</p><p>hexo new title 创建新文章</p><p>已设置别名快捷命令到git，hs即启动本地server（clean&amp;g&amp;s） hd即部署（clean&amp;g&amp;d）</p><h4 id="三，常用配置"><a href="#三，常用配置" class="headerlink" title="三，常用配置"></a>三，常用配置</h4><p>[hexo指导文档]: <a href="https://hexo.io/docs/">https://hexo.io/docs/</a><br>[Hexo Fluid 用户手册]:  <a href="https://hexo.fluid-dev.com/docs/guide/">https://hexo.fluid-dev.com/docs/guide/</a></p><p>新建博客的模板文件 scaffolds&#x2F;post.md</p><p>部署的git路径及分支在_config.yml文件的deploy节点下配置</p><h4 id="四，问题解决"><a href="#四，问题解决" class="headerlink" title="四，问题解决"></a>四，问题解决</h4><p><a href="https://blog.csdn.net/qq_38148394/article/details/79997971">https://blog.csdn.net/qq_38148394/article/details/79997971</a> 上传图片问题<br><a href="https://wxnacy.com/2018/01/12/hexo-specific-symbol/">https://wxnacy.com/2018/01/12/hexo-specific-symbol/</a> 特殊符号转义问题</p>]]></content>
     
     
     <categories>

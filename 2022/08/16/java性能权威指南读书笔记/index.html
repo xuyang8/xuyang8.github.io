@@ -24,7 +24,7 @@
 <meta property="og:description" content="1.JVM调优两类标志 ​	布尔标志 -XX:+FlagName 表示开启，-XX:-FlagName表示关闭 ​	附带参数的标志 -XX:FlagName&#x3D;something 表示将标志flagName的值设置为something ​	使用-XX:+Printflagsfinal 标志可以获得具体运行环境中特定标志的默认值 2.我们不应该把大量得到时间都耗费在那些小的性能改进上，而应该">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-08-16T14:34:18.000Z">
-<meta property="article:modified_time" content="2022-10-08T14:14:43.397Z">
+<meta property="article:modified_time" content="2022-10-09T14:35:28.470Z">
 <meta property="article:author" content="Xu Yang">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
@@ -217,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.8k words
+          4k words
         
       </span>
     
@@ -228,7 +228,7 @@
         
         
         
-          32 mins
+          34 mins
         
       </span>
     
@@ -300,6 +300,8 @@
 <p>​	7.5 GC调优基础，调整堆大小（超大堆时会涉及到虚拟内存，在数据于内存和磁盘间复制时会导致JVM性能问题），堆大小初始值-Xms N，最大值-Xmx N，正常设置情况下，经过一次FullGC后，应该释放出70%的空间，以此调整堆大小和GC算法；代空间调整，-XX:NewRatio&#x3D;N设置老年代与新生代的空间占用比率，比如2代表老年代：新生代为2:1，-XX:NewSize&#x3D;N设置新生代初始大小，-XX:MaxNewSize&#x3D;N设置新生代最大大小，-Xmn N将新生代初始大小和最大值设置为同一个值；元空间（MetaSpace）无大小限制，如有需要可以通过-XX:MetaspaceSize&#x3D;N和-XX:MaxMetaspaceSize&#x3D;N调整；控制并发线程数 -XX:ParallelGCThreads&#x3D;N，可以通过公式8+((N-8)*5&#x2F;8)估算，这里N代表CPU的数量，当一台机器存在多个JVM时，公式计算出的线程数会过高，必须进行优化减少；自适应调整新生代及老年代百分比，-XX:+UseAdaptiveSizePolicy默认开启，也可以使用-XX:+PrintAdaptiveSizePolicy来打印垃圾回收时不同的代进行空间调整的细节到GC日志</p>
 <p>​	7.6 开启GC日志，使用-verbose:gc或-XX:+PrintGC开启日志，使用-XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps 打印时间或详细信息，也可以使用-Xloggc将日志输出至文件而不是控制台，通过-XX:+UseGCLogfileRation -XX:NumberOfGCLogfiles&#x3D;N -XX:GCLogfileSize&#x3D;N设置日志文件的循环，日志文件大小会以8KB为单位规整</p>
 <p>8.垃圾收集算法</p>
+<p>​	8.1 Throughput收集器，可以通过设置-XX:MaxGCPauseMillis&#x3D;N（应用可承受的最大停顿时间，设置太小会导致频繁GC）和-XX:GCTimeRatio&#x3D;N（应用线程运行时间:GC线程运行时间，默认值99）调整性能目标，ThroughputGoal&#x3D;1-1&#x2F;(1+GCTimeRatio)</p>
+<p>​	8.2 CMS收集器，CMS会启动并发线程收集老年代，但不进行压缩整理</p>
 <p>​	</p>
 <p>​	系统工具：sar,vmstat,iostat,prstat,typeperf,nicstat</p>
 <p>​	jdk监控工具：jcmd,jconsole,jhat,jmap,jinfo,jstack,jstat,jvisualvm</p>

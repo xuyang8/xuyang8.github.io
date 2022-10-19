@@ -24,7 +24,7 @@
 <meta property="og:description" content="1.JVM调优两类标志 ​	布尔标志 -XX:+FlagName 表示开启，-XX:-FlagName表示关闭 ​	附带参数的标志 -XX:FlagName&#x3D;something 表示将标志flagName的值设置为something ​	使用-XX:+Printflagsfinal 标志可以获得具体运行环境中特定标志的默认值 2.我们不应该把大量得到时间都耗费在那些小的性能改进上，而应该">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-08-16T14:34:18.000Z">
-<meta property="article:modified_time" content="2022-10-09T14:35:28.470Z">
+<meta property="article:modified_time" content="2022-10-19T15:27:26.193Z">
 <meta property="article:author" content="Xu Yang">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
@@ -217,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4k words
+          4.8k words
         
       </span>
     
@@ -228,7 +228,7 @@
         
         
         
-          34 mins
+          40 mins
         
       </span>
     
@@ -300,8 +300,8 @@
 <p>​	7.5 GC调优基础，调整堆大小（超大堆时会涉及到虚拟内存，在数据于内存和磁盘间复制时会导致JVM性能问题），堆大小初始值-Xms N，最大值-Xmx N，正常设置情况下，经过一次FullGC后，应该释放出70%的空间，以此调整堆大小和GC算法；代空间调整，-XX:NewRatio&#x3D;N设置老年代与新生代的空间占用比率，比如2代表老年代：新生代为2:1，-XX:NewSize&#x3D;N设置新生代初始大小，-XX:MaxNewSize&#x3D;N设置新生代最大大小，-Xmn N将新生代初始大小和最大值设置为同一个值；元空间（MetaSpace）无大小限制，如有需要可以通过-XX:MetaspaceSize&#x3D;N和-XX:MaxMetaspaceSize&#x3D;N调整；控制并发线程数 -XX:ParallelGCThreads&#x3D;N，可以通过公式8+((N-8)*5&#x2F;8)估算，这里N代表CPU的数量，当一台机器存在多个JVM时，公式计算出的线程数会过高，必须进行优化减少；自适应调整新生代及老年代百分比，-XX:+UseAdaptiveSizePolicy默认开启，也可以使用-XX:+PrintAdaptiveSizePolicy来打印垃圾回收时不同的代进行空间调整的细节到GC日志</p>
 <p>​	7.6 开启GC日志，使用-verbose:gc或-XX:+PrintGC开启日志，使用-XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps 打印时间或详细信息，也可以使用-Xloggc将日志输出至文件而不是控制台，通过-XX:+UseGCLogfileRation -XX:NumberOfGCLogfiles&#x3D;N -XX:GCLogfileSize&#x3D;N设置日志文件的循环，日志文件大小会以8KB为单位规整</p>
 <p>8.垃圾收集算法</p>
-<p>​	8.1 Throughput收集器，可以通过设置-XX:MaxGCPauseMillis&#x3D;N（应用可承受的最大停顿时间，设置太小会导致频繁GC）和-XX:GCTimeRatio&#x3D;N（应用线程运行时间:GC线程运行时间，默认值99）调整性能目标，ThroughputGoal&#x3D;1-1&#x2F;(1+GCTimeRatio)</p>
-<p>​	8.2 CMS收集器，CMS会启动并发线程收集老年代，但不进行压缩整理</p>
+<p>​	8.1 Throughput收集器，可以通过设置-XX:MaxGCPauseMillis&#x3D;N（应用可承受的最大停顿时间，设置太小会导致频繁GC）和-XX:GCTimeRatio&#x3D;N（应用线程运行时间:GC线程运行时间，默认值99）调整性能目标，ThroughputGoal&#x3D;1-1&#x2F;(1+GCTimeRatio)；经历一次FullGC后，老年代垃圾收集会回收新生代中所有的对象，包括S0和S1，只有那些有活跃引用的对象或者已经经过压缩整理的对象会在老年代继续保持，其余的对象都会被回收。</p>
+<p>​	8.2 CMS收集器，CMS会启动并发线程收集老年代，但不进行压缩整理，并发回收经历7个阶段（初始标记，并发标记，并发预清理，可中断的并发预清理，重新标记，并发清除，并发重置，其中初始标记和重新标记涉及STW，可参考<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2031785">CMS执行的七个阶段</a>）；CMS在并发模式失效（新生代发生垃圾回收，但老年代没有足够空间容纳晋升的对象）时会退化为FullGC，单线程收集，耗时变长；老年代有足够空间容纳晋升的对象，但是由于空间碎片化晋升失败时，CMS会对整个老年代空间进行整理和压缩，这个耗时比并发失效的耗时还要多；针对并发模式失效的调优：1.更早地启动并发收集周期，-XX:CMSInitiatingOccupancyFraction&#x3D;N（默认70，代表老年代占用达到70%时启动并发收集周期）和-XX:+UseCMSInitiatingOccupancyOnly（默认为未开启，参数代表是否使用前面参数指定的阈值，当未配置时，JVM只在第一次使用设定的阈值，后续则自动调整）2.调整CMS后台线程数，-XX:ConcGCThreads&#x3D;N，ConcGCThreads&#x3D;(3+ParallelGCThreads)&#x2F;4。该值偏大会多占用CPU，所以如果没有频繁的遭遇并发模式失败，可以适当减小，释放CPU用于应用线程的运行。；java8中，CMS默认会收集元空间中不再载入的类，可以通过-XX:-CMSClassUnloadingEnabled标志进行关闭；增量式CMS垃圾收集器在Java8中已经不推荐使用，它可以让后台线程间歇性的停顿，让出一部分CPU所以在CPU资源有限时也能运行，-XX:+CMSIncrementalMode 开启增量式CMS，其余标志不再赘述，感兴趣百度。</p>
 <p>​	</p>
 <p>​	系统工具：sar,vmstat,iostat,prstat,typeperf,nicstat</p>
 <p>​	jdk监控工具：jcmd,jconsole,jhat,jmap,jinfo,jstack,jstat,jvisualvm</p>
